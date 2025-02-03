@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import ColorButton from "./components/ColorButton";
+import { useEffect, useRef, useState } from "react";
 import { colors } from "./constants/colors";
+import ColorButton from "./components/ColorButton";
 import Score from "./components/Score";
 
 const App = () => {
@@ -46,23 +46,23 @@ const App = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center gap-3 p-4">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center gap-6 p-4 bg-gray-100">
       <button
-        className="text-black bg-amber-300 font-bold py-2 px-4 rounded cursor-pointer absolute top-2 right-2"
+        className="text-black bg-amber-300 font-bold py-2 px-6 rounded-lg hover:bg-amber-400 transition-colors duration-200 absolute top-4 right-4 shadow-md"
         onClick={reset}
         data-testid="newGameButton"
       >
         New Game
       </button>
 
-      <h1 className="text-3xl font-bold">Color Game</h1>
-      <p className="text-xl" data-testid="gameInstructions">
+      <h1 className="text-4xl font-bold text-gray-800">Color Game</h1>
+      <p className="text-xl text-gray-600" data-testid="gameInstructions">
         Guess the correct color!
       </p>
 
       {toast && (
         <div
-          className={`px-4 py-2 text-white rounded ${toast.color}`}
+          className={`${toast.color} px-6 py-3 text-white rounded-lg shadow-lg animate-bounce`}
           data-testid="gameStatus"
         >
           {toast.message}
@@ -70,19 +70,14 @@ const App = () => {
       )}
 
       <div
-        className="w-32 h-32 rounded-lg border-2 border-black mt-4"
+        className="w-40 h-40 rounded-lg shadow-xl border-4 border-gray-200 transition-all duration-300"
         style={{ backgroundColor: targetColor }}
         data-testid="colorBox"
-      ></div>
+      />
 
-      <div className="grid grid-cols-3 gap-3 mt-4">
-        {colors.slice(0, 6).map((color) => (
-          <ColorButton
-            key={color}
-            color={color}
-            handleClick={handleClick}
-            data-testid="colorOption"
-          />
+      <div className="grid grid-cols-3 gap-4 mt-4 p-4">
+        {colors.map((color) => (
+          <ColorButton key={color} color={color} handleClick={handleClick} />
         ))}
       </div>
 

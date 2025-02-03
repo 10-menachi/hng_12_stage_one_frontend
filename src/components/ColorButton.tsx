@@ -3,11 +3,11 @@ import React from "react";
 const ColorButton = ({ color, handleClick }) => {
   return (
     <button
-      className="text-white font-bold py-2 px-4 rounded cursor-pointer bg-gray-700"
+      className="w-20 h-20 rounded-lg shadow-lg hover:scale-105 transition-transform duration-200"
+      style={{ backgroundColor: color }}
       onClick={() => handleClick(color)}
-    >
-      {color}
-    </button>
+      data-testid="colorOption"
+    />
   );
 };
 
