@@ -27,8 +27,21 @@ const App = () => {
     timeoutRef.current = setTimeout(() => setToast(null), 1500);
   };
 
+  const reset = () => {
+    setCorrect(0);
+    setTotal(0);
+    setToast(null);
+  };
+
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center gap-3">
+      <button
+        className="text-black bg-amber-300 font-bold py-2 px-4 rounded cursor-pointer absolute top-2 right-2"
+        onClick={() => reset()}
+      >
+        Reset
+      </button>
+
       <h1 className="text-3xl font-bold">Color Game</h1>
       <p className="text-xl">Guess the correct color!</p>
 
